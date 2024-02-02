@@ -1,0 +1,78 @@
+<!--
+
+Seperti biasa ini Sp yg buat jngn delet hak cipta paham?
+
+-->
+<meta charset="UTF-8">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+		}
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #555;
+      }
+
+		input[type=text], textarea {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 10px;
+			font-size: 16px;
+			font-family: inherit;
+			resize: vertical;
+		}
+
+		button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-top: 10px;
+			cursor: pointer;
+			transition-duration: 0.4s;
+			border-radius: 5px;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+		<label for="title">Title:</label><br>
+		<input type="text" id="title" name="title"><br>
+		<label for="subtitle">Subtitle:</label><br>
+		<input type="text" id="subtitle" name="subtitle"><br>
+		<label for="content">Content:</label><br>
+		<textarea id="content" name="content" rows="20"></textarea><br>
+		<button onclick="saveFile()">Download</button>
+	<script>
+		function saveFile() {
+			var title = document.getElementById("title").value;
+			var subtitle = document.getElementById("subtitle").value;
+			var content = document.getElementById("content").value;
+
+			var text = "Title: " + title + "\n";
+			text += "Subtitle: " + subtitle + "\n\n";
+			text += content;
+
+			var filename = "artikel.txt";
+
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			element.setAttribute('download', filename);
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
+		}
+	</script>
